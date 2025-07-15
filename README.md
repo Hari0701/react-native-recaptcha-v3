@@ -1,2 +1,2 @@
-# react-native-recaptcha-v3
-react-native-recaptcha-v3
+# react-native-v3-recaptcha
+react-native-v3-recaptcha
