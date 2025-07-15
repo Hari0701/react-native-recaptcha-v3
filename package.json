@@ -1,5 +1,5 @@
 {
-  "name": "react-native-recaptcha-v3",
+  "name": "react-native-v3-recaptcha",
   "version": "1.0.0",
   "description": "Custom fork of react-native-recaptchav3 compatible with modern react-native-webview versions",
   "main": "dist/index.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hari0701/react-native-recaptcha-v3.git"
+    "url": "git+https://github.com/hari0701/react-native-v3-recaptcha.git"
   },
   "author": "Hariharan <hari07.at@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hari0701/react-native-recaptcha-v3/issues"
+    "url": "https://github.com/hari0701/react-native-v3-recaptcha/issues"
   },
-  "homepage": "https://github.com/hari0701/react-native-recaptcha-v3#readme",
+  "homepage": "https://github.com/hari0701/react-native-v3-recaptcha#readme",
   "devDependencies": {
     "@types/react": "^18.2.6",
     "react": "^18.2.0",
