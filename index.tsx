@@ -13,7 +13,7 @@ class ReCaptchaV3 extends React.PureComponent<IProps> {
   private _tokenResolver: ((token: string) => void) | null = null;
 
   /**
-   * Triggers the CAPTCHA and returns the token when available.
+   * Triggers CAPTCHA and returns token.
    */
   public getToken(): Promise<string> {
     return new Promise((resolve) => {
@@ -28,10 +28,7 @@ class ReCaptchaV3 extends React.PureComponent<IProps> {
       this._tokenResolver = null;
     }
 
-    // Optional callback for consumer
-    if (this.props.onReceiveToken) {
-      this.props.onReceiveToken(token);
-    }
+    this.props.onReceiveToken?.(token);
   };
 
   render() {
