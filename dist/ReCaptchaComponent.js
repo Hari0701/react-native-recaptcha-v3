@@ -63,7 +63,10 @@ const getInvisibleRecaptchaContent = (siteKey, action) => {
   `;
 };
 class ReCaptchaComponent extends React.PureComponent {
-    webViewRef = null;
+    constructor() {
+        super(...arguments);
+        this.webViewRef = null;
+    }
     refreshToken() {
         if (!this.webViewRef)
             return;
@@ -75,13 +78,14 @@ class ReCaptchaComponent extends React.PureComponent {
         }
     }
     render() {
-        return (React.createElement(react_native_1.View, { style: { height: 0, width: 0, flex: 0 } },
-            React.createElement(react_native_webview_1.WebView, { ref: (ref) => (this.webViewRef = ref), javaScriptEnabled: true, originWhitelist: ["*"], mixedContentMode: "always", source: {
-                    html: getInvisibleRecaptchaContent(this.props.siteKey, this.props.action),
-                    baseUrl: this.props.captchaDomain,
-                }, onMessage: (e) => {
-                    this.props.onReceiveToken(e.nativeEvent.data);
-                } })));
+        return (<react_native_1.View style={{ height: 0, width: 0, flex: 0 }}>
+        <react_native_webview_1.WebView ref={(ref) => (this.webViewRef = ref)} javaScriptEnabled originWhitelist={["*"]} mixedContentMode="always" source={{
+                html: getInvisibleRecaptchaContent(this.props.siteKey, this.props.action),
+                baseUrl: this.props.captchaDomain,
+            }} onMessage={(e) => {
+                this.props.onReceiveToken(e.nativeEvent.data);
+            }}/>
+      </react_native_1.View>);
     }
 }
 exports.default = ReCaptchaComponent;

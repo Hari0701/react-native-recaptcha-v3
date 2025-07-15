@@ -1,6 +1,6 @@
 {
   "name": "react-native-v3-recaptcha",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Custom fork of react-native-recaptchav3 compatible with modern react-native-webview versions",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -30,5 +30,10 @@
     "react": "*",
     "react-native": "*",
     "react-native-webview": "*"
-  }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
 }
