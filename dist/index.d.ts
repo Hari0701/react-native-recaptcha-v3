@@ -1,14 +1,18 @@
-import * as React from 'react';
+import * as React from "react";
 export type IProps = {
     captchaDomain: string;
-    onReceiveToken: (captchaToken: string) => void;
+    onReceiveToken?: (captchaToken: string) => void;
     siteKey: string;
     action: string;
 };
-export type IState = {};
-declare class ReCaptchaV3 extends React.PureComponent<IProps, IState> {
+declare class ReCaptchaV3 extends React.PureComponent<IProps> {
     private _captchaRef;
-    refreshToken: () => void;
+    private _tokenResolver;
+    /**
+     * Triggers the CAPTCHA and returns the token when available.
+     */
+    getToken(): Promise<string>;
+    private handleToken;
     render(): React.JSX.Element;
 }
 export default ReCaptchaV3;
