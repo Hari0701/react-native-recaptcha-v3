@@ -17,12 +17,16 @@ class ReCaptchaComponent extends React.PureComponent<IProps> {
     if (!this.webViewRef) return;
 
     if (platform.isIOS) {
-      this.webViewRef.injectJavaScript(getExecutionFunction(this.props.siteKey, this.props.action));
+      this.webViewRef.injectJavaScript(`window.executionParams.executeCaptcha();`);
     } else if (platform.isAndroid) {
+      // On Android, reload to clear state, then call again (with slight delay to ensure WebView is ready)
       this.webViewRef.reload();
+
+      setTimeout(() => {
+        this.webViewRef?.injectJavaScript(`window.executionParams.executeCaptcha();`);
+      }, 500);
     }
   }
-
   render() {
     return (
       <View style={{ height: 0, width: 0, flex: 0 }}>
@@ -63,10 +67,14 @@ const getInvisibleRecaptchaContent = (siteKey: string, action: string) => {
       <head>
         <script src="https://www.google.com/recaptcha/api.js?render=${siteKey}"></script>
         <script>
-          window.onload = function() {
-            grecaptcha.ready(function() {
-              ${getExecutionFunction(siteKey, action)}
-            });
+          window.executionParams = {
+            executeCaptcha: function() {
+              grecaptcha.ready(function() {
+                grecaptcha.execute('${siteKey}', { action: '${action}' }).then(function(token) {
+                  window.ReactNativeWebView.postMessage(token);
+                });
+              });
+            }
           };
         </script>
       </head>

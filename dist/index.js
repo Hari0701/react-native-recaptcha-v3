@@ -8,18 +8,16 @@ class ReCaptchaV3 extends React.PureComponent {
         this._captchaRef = React.createRef();
         this._tokenResolver = null;
         this.handleToken = (token) => {
+            var _a, _b;
             if (this._tokenResolver) {
                 this._tokenResolver(token);
                 this._tokenResolver = null;
             }
-            // Optional callback for consumer
-            if (this.props.onReceiveToken) {
-                this.props.onReceiveToken(token);
-            }
+            (_b = (_a = this.props).onReceiveToken) === null || _b === void 0 ? void 0 : _b.call(_a, token);
         };
     }
     /**
-     * Triggers the CAPTCHA and returns the token when available.
+     * Triggers CAPTCHA and returns token.
      */
     getToken() {
         return new Promise((resolve) => {
