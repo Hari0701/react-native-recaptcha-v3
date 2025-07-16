@@ -1,7 +1,7 @@
 import * as React from "react";
 type IProps = {
     captchaDomain: string;
-    onReceiveToken?: (captchaToken: string) => void;
+    onReceiveToken: (captchaToken: string) => void;
     siteKey: string;
     action: string;
 };

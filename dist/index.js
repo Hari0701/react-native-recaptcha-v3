@@ -5,29 +5,14 @@ const ReCaptchaComponent_1 = require("./src/ReCaptchaComponent");
 class ReCaptchaV3 extends React.PureComponent {
     constructor() {
         super(...arguments);
-        this._captchaRef = React.createRef();
-        this._tokenResolver = null;
-        this.handleToken = (token) => {
-            var _a, _b;
-            if (this._tokenResolver) {
-                this._tokenResolver(token);
-                this._tokenResolver = null;
-            }
-            (_b = (_a = this.props).onReceiveToken) === null || _b === void 0 ? void 0 : _b.call(_a, token);
+        this.refreshToken = () => {
+            this._captchaRef.refreshToken();
         };
     }
-    /**
-     * Triggers CAPTCHA and returns token.
-     */
-    getToken() {
-        return new Promise((resolve) => {
-            var _a;
-            this._tokenResolver = resolve;
-            (_a = this._captchaRef.current) === null || _a === void 0 ? void 0 : _a.refreshToken();
-        });
-    }
     render() {
-        return (React.createElement(ReCaptchaComponent_1.default, { ref: this._captchaRef, action: this.props.action, captchaDomain: this.props.captchaDomain, siteKey: this.props.siteKey, onReceiveToken: this.handleToken }));
+        return (React.createElement(ReCaptchaComponent_1.default, { ref: (ref) => (this._captchaRef = ref), action: this.props.action, captchaDomain: this.props.captchaDomain, siteKey: this.props.siteKey, onReceiveToken: (token) => {
+                this.props.onReceiveToken(token);
+            } }));
     }
 }
 exports.default = ReCaptchaV3;
